@@ -11,8 +11,9 @@
 // I N C L U D E S ///////////////////////////////////////////////
 #include <stdio.h>
 #include <string.h>
+// INCLUDE NUCLEO_144 Board Support
 #include <NUCLEO_144.h>
-
+// INCLUDE JUMPSTART API
 #include <jsapi.h>
 
 
@@ -31,14 +32,13 @@ void setup( void){
     printf("\r\nImageCraft STM32F746ZG MCU Running at %dMHz\r\n",jsapi_clock.GetSysClkFreq() / 1000000);
     // Setup LEDS
 
+    // Arduino like calls intiate I/O Pins to OUTPUTS
     pinMode(LED1, OUTPUT);
     pinMode(LED2, OUTPUT);
     pinMode(LED3, OUTPUT);
+    pinMode(D7, OUTPUT);    // Make Digital Pin 7 an Output
+    pinMode(D6, INPUT);    // Make Digital Pin 6 an Input
 
-    pinMode(D7, INPUT);
-    DelayMilliSecs(100);
-    pinMode(D6, OUTPUT);
-    digitalWrite(D6, HIGH);
 }//End of setup()
 
 
@@ -47,25 +47,23 @@ void setup( void){
 int main(){
 
     setup();
+
     while(1){
+            if(digitalRead(D6)==HIGH)
+                printf("\r\nD6 == HIGH\n");
+            else
+                printf("\r\nD6 == LOW\n");
+            digitalWrite(LED1,HIGH);
+            digitalWrite(LED3,LOW);
+            DelayMilliSecs(100);
+            digitalWrite(LED2,HIGH);
 
-        if(digitalRead(D7)==HIGH)
-            printf("\r\n HIGH \r\n");
-        else
-            printf("\r\n LOW \r\n");
-        DelaySeconds(2);
-        digitalWrite(D6, LOW);
-
-        digitalWrite(LED1, HIGH);
-        digitalWrite(LED3, LOW);
-        DelayMilliSecs(100);
-        digitalWrite(LED2, HIGH);
-        DelayMilliSecs(100);
-        digitalWrite(LED3,HIGH);
-        digitalWrite(LED1, LOW);
-        DelayMilliSecs(100);
-        digitalWrite(LED2, LOW);
-        DelayMilliSecs(100);
+            DelayMilliSecs(100);
+            digitalWrite(LED3,HIGH);
+            digitalWrite(LED1,LOW);
+            DelayMilliSecs(100);
+            digitalWrite(LED2,LOW);
+            DelayMilliSecs(100);
 
     }//End of while
 

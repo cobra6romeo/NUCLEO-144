@@ -102,6 +102,16 @@
 #define HIGH 1
 #define LOW 0
 
+#define SS_PIN     D8
+#define MOSI_PIN   D22
+#define MISO_PIN   D25
+#define SCK_PIN    D23
+
+#define SDA_PIN
+#define SCL_PIN
+
+
+
 // P O R T    L O O K    U P    T A B L E /////////////////////////
 const uint8_t digital_pin_to_port[] = {
     PG, PG, PF, PE, PF, PE, PE, PF, PF, PD, PD, PA, PA, PA, PB, PB,
@@ -124,4 +134,5 @@ const char* Get_Port_String(int port);
 void IdentifyPort(const int pin);
 void digitalWrite(const int pin, int state);
 int digitalRead(const int pin);
+void SPI_SetPins(const int sck_pin,const int mosi_pin, const int miso_pin, const int cs_pin);
 #endif // NUCLEO_144_H

@@ -64,6 +64,11 @@ void pinMode(const int pin, int mode){
     }//End of switch
 }// End of pinMode()
 
+// SPI_SetPins()
+void SPI_SetPins(const int sck_pin,const int mosi_pin, const int miso_pin, const int cs_pin){
+
+}//End of SPI_SetPins()
+
 // d i g i t a l W r i t e ( ) //////////////////////////////////////////////////////////
 void digitalWrite(const int pin, int state){
     switch(digital_pin_to_port[pin]){
